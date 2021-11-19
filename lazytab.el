@@ -1,5 +1,6 @@
 (require 'cdlatex)
 (require 'org-table)
+(provide 'lazytab)
 
 (defun lazytab-position-cursor-and-edit ()
   ;; (if (search-backward "\?" (- (point) 100) t)
