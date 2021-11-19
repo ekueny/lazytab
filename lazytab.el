@@ -21,9 +21,7 @@
   (let* ((table (org-table-to-lisp))
          params
          (replacement-table
-          (if (texmathp)
-              (lazytab-orgtbl-to-amsmath table params)
-            (orgtbl-to-latex table params))))
+          (lazytab-orgtbl-to-amsmath table params)))
     (kill-region (org-table-begin) (org-table-end))
     (open-line 1)
     (push-mark)
