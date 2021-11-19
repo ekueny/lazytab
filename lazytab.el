@@ -9,6 +9,7 @@
 
 (defun lazytab-orgtbl-edit ()
   (advice-add 'orgtbl-ctrl-c-ctrl-c :after #'lazytab-orgtbl-replace)
+  (advice-add 'org-ctrl-c-ctrl-c :after #'lazytab-orgtbl-replace)
   (orgtbl-mode 1)
   (open-line 1)
   (insert "\n|"))
@@ -28,18 +29,19 @@
     (insert replacement-table)
     (align-regexp (region-beginning) (region-end) "\\([:space:]*\\)& ")
     (orgtbl-mode -1)
-    (advice-remove 'orgtbl-ctrl-c-ctrl-c #'lazytab-orgtbl-replace)))
+    (advice-remove 'orgtbl-ctrl-c-ctrl-c #'lazytab-orgtbl-replace)
+    (advice-remove 'org-ctrl-c-ctrl-c #'lazytab-orgtbl-replace)))
 
 (defun lazytab-orgtbl-to-amsmath (table params)
   (orgtbl-to-generic
    table
    (org-combine-plists
     '(:splice t
-      :lstart ""
-      :lend " \\\\"
-      :sep " & "
-      :hline nil
-      :llend "")
+	      :lstart ""
+	      :lend " \\\\"
+	      :sep " & "
+	      :hline nil
+	      :llend "")
     params)))
 
 (defun lazytab-cdlatex-or-orgtbl-next-field ()
