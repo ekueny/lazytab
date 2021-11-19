@@ -46,7 +46,7 @@
 
 (defun lazytab-cdlatex-or-orgtbl-next-field ()
   (when (and (bound-and-true-p orgtbl-mode)
-             (org-table-p)
+             (org-at-table-p)
              (looking-at "[[:space:]]*\\(?:|\\|$\\)")
              (let ((s (thing-at-point 'sexp)))
                (not (and s (assoc s cdlatex-command-alist-comb)))))
